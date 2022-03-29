@@ -5,17 +5,30 @@ class ToDo extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            input: "",
+            value: "",
+            array: [],
         };
     }
     changeInputValue = (event) => {
         this.setState({
-            [event.target.name]: event.target.value,
+            value: event.target.value,
         });
     };
-    handleSubmitValue = (event) => {
-        console.log(this.state);
+    handleSubmitValue = () => {
+        if (this.state.value === "") {
+            alert("Not DaTa!");
+            return;
+        } else {
+            this.setState((prevState) => ({
+                array: [...prevState.array, this.state.value],
+                value: "",
+            }));
+        }
     };
+    handleEdit = () => {
+        <prompt></prompt>;
+    };
+
     render() {
         return (
             <div className="ToDo">
@@ -27,13 +40,15 @@ class ToDo extends React.Component {
                         <input
                             type="text"
                             className="input-add"
+                            name="input"
+                            value={this.state.value}
                             placeholder="What do you want to do ?"
                             onChange={(event) => this.changeInputValue(event)}
                         />
                         <br />
                         <button
                             className="button-add"
-                            onClick={(event) => this.handleSubmitValue(event)}
+                            onClick={() => this.handleSubmitValue()}
                         >
                             Submit
                         </button>
@@ -52,26 +67,30 @@ class ToDo extends React.Component {
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>Buy Ben</td>
-                                    <td>Not Completed</td>
-                                    <td>
-                                        <button id="conpleted">
-                                            Completed
-                                        </button>
-                                        <button id="delete">Delete</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Buy Ben</td>
-                                    <td>Not Completed</td>
-                                    <td>
-                                        <button id="conpleted">
-                                            Completed
-                                        </button>
-                                        <button id="delete">Delete</button>
-                                    </td>
-                                </tr>
+                                {this.state.array.map((item, index) => {
+                                    return (
+                                        <tr key={index}>
+                                            <td>{item}</td>
+                                            <td>Not Completed</td>
+                                            <td>
+                                                <button id="conpleted">
+                                                    Completed
+                                                </button>
+                                                <button id="delete">
+                                                    Delete
+                                                </button>
+                                                <button
+                                                    id="edit"
+                                                    onClick={() => {
+                                                        this.handleEdit();
+                                                    }}
+                                                >
+                                                    Edit
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    );
+                                })}
                             </tbody>
                         </table>
                     </div>
