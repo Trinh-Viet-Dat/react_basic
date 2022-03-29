@@ -7,12 +7,74 @@
         text-align: center;
     }
     .Add{ 
-        padding: 0 10px;
-        #header-add{
-            background-color: #f8f8f8;
-            border-bottom: 1px solid gray;
-        }
-        margin: 0 10vw;
+        margin: 0 10px;
         border: 1px solid gray;
+        border-radius: 2px;
+        .header-add{
+            border-bottom: 1px solid gray;
+            padding-left: 10px;
+            font-size: 16px;
+            background-color: #f8f8f8;
+        }
+        .content-add{
+            padding: 10px;
+            p{
+                font-weight: bold;
+                padding: 10px 0;
+            }
+            .input-add{
+                padding: 3px 0;
+                width: 100%;
+            }
+            .button-add{
+                padding: 5px;
+                margin-top: 15px;
+                background-color: blue;
+                border-radius: 2px;
+                color: white;
+                border: none;
+            }
+        }
+    }
+    .Task{
+        margin: 0 10px;
+        border: 1px solid gray;
+        border-radius: 2px;
+        .header-task{
+            border-bottom: 1px solid gray;
+            padding-left: 10px;
+            font-size: 16px;
+            background-color: #f8f8f8;
+        }
+        .add-task{
+            table{
+                tr{
+                    th{
+                        padding-bottom: 15px;
+                    }
+                    td{
+                        width: 30vw;
+                        text-align: center;
+                        padding: 5px 0;
+                        #delete{
+                            padding: 5px;
+                            background-color: red;
+                            border-radius: 2px;
+                            color: white;
+                            border: none;
+                        }
+                        #conpleted{
+                            margin: 0 5px;
+                            padding: 5px;
+                            background-color: blue;
+                            border-radius: 2px;
+                            color: white;
+                            border: none;
+                        }
+                    }
+
+                }
+            }
+        }
     }
 }
