@@ -2,6 +2,20 @@ import React from "react";
 import "./styles.scss";
 
 class ToDo extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            input: "",
+        };
+    }
+    changeInputValue = (event) => {
+        this.setState({
+            [event.target.name]: event.target.value,
+        });
+    };
+    handleSubmitValue = (event) => {
+        console.log(this.state);
+    };
     render() {
         return (
             <div className="ToDo">
@@ -14,9 +28,15 @@ class ToDo extends React.Component {
                             type="text"
                             className="input-add"
                             placeholder="What do you want to do ?"
+                            onChange={(event) => this.changeInputValue(event)}
                         />
                         <br />
-                        <button className="button-add">Submit</button>
+                        <button
+                            className="button-add"
+                            onClick={(event) => this.handleSubmitValue(event)}
+                        >
+                            Submit
+                        </button>
                     </div>
                 </div>
                 <br />
