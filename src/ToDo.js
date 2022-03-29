@@ -47,7 +47,7 @@ class ToDo extends React.Component {
                                     <td>Not Completed</td>
                                     <td>
                                         <button id="conpleted">
-                                            Completedd
+                                            Completed
                                         </button>
                                         <button id="delete">Delete</button>
                                     </td>
