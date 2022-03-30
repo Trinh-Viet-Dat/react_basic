@@ -6,7 +6,23 @@ class ToDo extends React.Component {
         super(props);
         this.state = {
             value: "",
-            array: [],
+            array: [
+                {
+                    id: "1",
+                    item: "abc",
+                    status: "Complete",
+                },
+                {
+                    id: "w",
+                    item: "ab",
+                    status: "Complete",
+                },
+                {
+                    id: "3",
+                    item: "a",
+                    status: "Complete",
+                },
+            ],
         };
     }
     changeInputValue = (event) => {
@@ -19,14 +35,30 @@ class ToDo extends React.Component {
             alert("Not DaTa!");
             return;
         } else {
-            this.setState((prevState) => ({
-                array: [...prevState.array, this.state.value],
-                value: "",
-            }));
+            const object = {
+                id: "",
+                item: this.state.value,
+                status: "",
+            };
+            const arr = this.state.array;
+            arr.push(object);
+            this.setState({
+                array: arr,
+            });
+
+            // this.setState((prevState) => ({
+            //     array: [...prevState.array, this.state.value],
+            //     value: "",
+            // }));
         }
     };
-    handleEdit = () => {
-        <prompt></prompt>;
+    handleDelete = (id) => {
+        this.setState((state) => {
+            const array = state.array.filter((element) => element.id !== id);
+            return {
+                array,
+            };
+        });
     };
 
     render() {
@@ -67,16 +99,23 @@ class ToDo extends React.Component {
                                 </tr>
                             </thead>
                             <tbody>
-                                {this.state.array.map((item, index) => {
+                                {this.state.array.map((item) => {
                                     return (
-                                        <tr key={index}>
-                                            <td>{item}</td>
-                                            <td>Not Completed</td>
+                                        <tr key={item.id}>
+                                            <td>{item.item}</td>
+                                            <td>{item.status}</td>
                                             <td>
                                                 <button id="conpleted">
                                                     Completed
                                                 </button>
-                                                <button id="delete">
+                                                <button
+                                                    id="delete"
+                                                    onClick={() => {
+                                                        this.handleDelete(
+                                                            item.id
+                                                        );
+                                                    }}
+                                                >
                                                     Delete
                                                 </button>
                                                 <button
