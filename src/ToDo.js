@@ -23,12 +23,17 @@ function ToDo() {
     const handleSubmit = () => {
         let newitem = item.inputItem;
         let states = [...state];
-        let newArr = {
-            item: newitem,
-            status: "ascs",
-        };
-        states.push(newArr);
-        setState(states);
+        if (!newitem) {
+            alert("Nhập vào todo !");
+            return;
+        } else {
+            let newArr = {
+                item: newitem,
+                status: "ascs",
+            };
+            states.push(newArr);
+            setState(states);
+        }
     };
     return (
         <div className="Todo">
