@@ -38,13 +38,16 @@ function ToDo() {
 	};
 	const handleEdit = (index) => {
 		let newinput = prompt("Nhập công việc mới : ", "your work here....");
-		let arr = {
-			id: index + 1,
-			item: newinput,
-			status: "oke",
-		};
-		let newarr = [...todo];
-		newarr.splice(index, 1, arr);
+		let newarr = todo.map((t, id) => {
+			if (id === index) {
+				return {
+					item: newinput,
+					status: "oke",
+				};
+			}
+			return t;
+		});
+
 		setTodo(newarr);
 	};
 	return (
@@ -75,7 +78,6 @@ function ToDo() {
 					<table>
 						<thead>
 							<tr>
-								<th>Stt</th>
 								<th>Item</th>
 								<th>Status</th>
 								<th>Action</th>
@@ -84,7 +86,6 @@ function ToDo() {
 						<tbody>
 							{todo.map((item, index) => (
 								<tr key={index}>
-									<td>{index + 1}</td>
 									<td>{item.item}</td>
 									<td>{item.status}</td>
 									<td>
@@ -93,17 +94,13 @@ function ToDo() {
 										</button>
 										<button
 											id="delete"
-											onClick={(index) =>
-												handleDelete(index)
-											}
+											onClick={() => handleDelete(index)}
 										>
 											Delete
 										</button>
 										<button
 											id="edit"
-											onClick={(index) =>
-												handleEdit(index)
-											}
+											onClick={() => handleEdit(index)}
 										>
 											Edit
 										</button>
