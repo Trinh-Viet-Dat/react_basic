@@ -38,6 +38,7 @@ function ToDo() {
 	const handleEdit = (index) => {
 		let newinput = prompt("Nhập công việc mới : ", "your work here....");
 		let arr = {
+			id: index + 1,
 			item: newinput,
 			status: "oke",
 		};
@@ -73,6 +74,7 @@ function ToDo() {
 					<table>
 						<thead>
 							<tr>
+								<th>Stt</th>
 								<th>Item</th>
 								<th>Status</th>
 								<th>Action</th>
@@ -81,6 +83,7 @@ function ToDo() {
 						<tbody>
 							{todo.map((item, index) => (
 								<tr key={index}>
+									<td>{index + 1}</td>
 									<td>{item.item}</td>
 									<td>{item.status}</td>
 									<td>
