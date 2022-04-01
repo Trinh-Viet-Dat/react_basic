@@ -49,10 +49,10 @@ function ToDo() {
 		setIsOpenEdit(!isOpenEdit);
 	};
 	const handleSaveEdit = () => {
-		let items = JSON.parse(JSON.stringify(todo)); // spreads operarter
+		let items = JSON.parse(JSON.stringify(todo));
 		let index = inputValue.indexInput;
-		items[index].item = inputValue.inputValueEdit;
 		setTodo(items);
+		items[index].item = inputValue.inputValueEdit;
 		setIsOpenEdit(!isOpenEdit);
 	};
 
