@@ -3,6 +3,7 @@
     margin: 0;
 }
 .Todo{
+    
     h1{
         text-align: center;
     }
@@ -83,6 +84,59 @@
 
                 }
             }
+        }
+
+    }
+    .Edit{
+        margin: 0 10px;
+        border: 1px solid gray;
+        border-radius: 2px;
+        .header-edit{
+            border-bottom: 1px solid gray;
+            padding-left: 10px;
+            font-size: 16px;
+            background-color: #f8f8f8;
+        }
+        .add-edit{
+            table{
+                tr{
+                    th{
+                        padding-bottom: 15px;
+                    }
+                    td{
+                        width: 30vw;
+                        text-align: center;
+                        padding: 5px 0;
+                        #exitEdit{
+                            padding: 5px;
+                            background-color: red;
+                            border-radius: 2px;
+                            color: white;
+                            border: none;
+                        }
+                        #changeEdit{
+                            margin: 0 5px;
+                            padding: 5px;
+                            background-color: blue;
+                            border-radius: 2px;
+                            color: white;
+                            border: none;
+                        }
+                    }
+
+                }
+            }
+        }
+        
+    }
+    .search{
+        border: 1px solid black;
+        border-radius:5px ;
+        text-align: center;
+        margin: 10px 20px 10px 80vw;
+        
+        .search-input{
+            width: 18vw;
         }
     }
 }

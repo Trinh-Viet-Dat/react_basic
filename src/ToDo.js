@@ -2,18 +2,36 @@ import React, { useState } from "react";
 import "./styles.scss";
 
 function ToDo() {
+	// const inititems = [
+	// 	{
+	// 	  name: "Aflreds Futterkiste",
+	// 	  status: "new",
+	// 	},
+	//   ];
+	//   const [valueInput, setValueInput] = useState({
+	// 	inputTask: "",
+	// 	inputEdit: "",
+	//   });
 	const initTodo = [
 		{
 			item: "avc",
-			status: "aá",
+			status: "New",
 		},
 	];
 	const [todo, setTodo] = useState(initTodo);
 	const [input_item, set_input_item] = useState({
+		inputEdit: "",
 		inputItem: "",
 	});
+
+	// const handleInput = (e) => {
+	// 	const { value, name } = e.target;
+	// 	setValueInput({
+	// 	  ...valueInput,
+	// 	  [name]: value,
+	// 	});
+	//   };
 	const handleInputItem = (e) => {
-		console.log(e.target.value);
 		const { value, name } = e.target;
 		set_input_item({
 			...input_item,
@@ -25,7 +43,7 @@ function ToDo() {
 		let newtodo = [...todo];
 		const arr = {
 			item: newitem,
-			status: "abc",
+			status: "New",
 		};
 		newtodo.push(arr);
 		setTodo(newtodo);
@@ -36,20 +54,81 @@ function ToDo() {
 		newitem.splice(index, 1);
 		setTodo(newitem);
 	};
-	const handleEdit = (index) => {
-		let newinput = prompt("Nhập công việc mới : ", "your work here....");
+	const handleCompleted = (index) => {
 		let newarr = todo.map((t, id) => {
 			if (id === index) {
 				return {
-					item: newinput,
-					status: "oke",
+					item: t.item,
+					status: "Completed",
 				};
 			}
 			return t;
 		});
-
 		setTodo(newarr);
 	};
+	const handleNew = (index) => {
+		let newarr = todo.map((t, id) => {
+			if (id === index) {
+				return {
+					item: t.item,
+					status: "New",
+				};
+			}
+			return t;
+		});
+		setTodo(newarr);
+	};
+	const handleDepending = (index) => {
+		let newarr = todo.map((t, id) => {
+			if (id === index) {
+				return {
+					item: t.item,
+					status: "Depending",
+				};
+			}
+			return t;
+		});
+		setTodo(newarr);
+	};
+	const [isOpenEdit, setIsOpenEdit] = useState(false);
+	const handleCloseEdit = () => {
+		setIsOpenEdit(!isOpenEdit);
+	};
+
+	// const handleEdit = (index) => {
+	// 	setValueInput({
+	// 	  ...valueInput,
+	// 	  inputEdit: items[index].name,
+	// 	  indexEdit: index,
+	// 	});
+	// 	setIsOpenEdit(!isOpenEdit);
+
+	//   };
+	const handleEdit = (index) => {
+		set_input_item({
+			...input_item,
+			inputEdit: todo[index].item,
+			indexInput: index,
+		});
+		setIsOpenEdit(!isOpenEdit);
+	};
+
+	// const handleSaveEdit = () => {
+	// 	let item = [...items];
+	// 	let index = valueInput.indexEdit;
+	// 	item[index].name = valueInput.inputEdit;
+	// 	setItems(item);
+	// 	setIsOpenEdit(!isOpenEdit);
+	//   };
+	const handleSaveEdit = () => {
+		let items = [...todo];
+		let index = input_item.indexInput;
+
+		items[index].item = input_item.inputEdit;
+		set_input_item(items);
+		setIsOpenEdit(!isOpenEdit);
+	};
+
 	return (
 		<div className="Todo">
 			<h1> ToDos </h1>
@@ -71,7 +150,6 @@ function ToDo() {
 					</button>
 				</div>
 			</div>
-			<br />
 			<div className="Task">
 				<div className="header-task">Task</div>
 				<div className="add-task">
@@ -89,7 +167,26 @@ function ToDo() {
 									<td>{item.item}</td>
 									<td>{item.status}</td>
 									<td>
-										<button id="conpleted">
+										<button
+											id="conpleted"
+											onClick={() => handleNew(index)}
+										>
+											New
+										</button>
+										<button
+											id="conpleted"
+											onClick={() =>
+												handleDepending(index)
+											}
+										>
+											Depending
+										</button>
+										<button
+											id="conpleted"
+											onClick={() =>
+												handleCompleted(index)
+											}
+										>
 											Completed
 										</button>
 										<button
@@ -111,6 +208,44 @@ function ToDo() {
 					</table>
 				</div>
 			</div>
+			{isOpenEdit && (
+				<>
+					<div className="Edit">
+						<div className="header-Edit">Edit</div>
+						<div className="add-edit">
+							<table>
+								<tbody>
+									<tr>
+										<td></td>
+										<td>
+											<input
+												type="text"
+												value={input_item.inputEdit}
+												name="inputEdit"
+												onChange={handleInputItem}
+											/>
+										</td>
+										<td>
+											<button
+												id="changeEdit"
+												onClick={handleSaveEdit}
+											>
+												Save
+											</button>
+											<button
+												id="exitEdit"
+												onClick={handleCloseEdit}
+											>
+												Exit
+											</button>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</>
+			)}
 		</div>
 	);
 }
