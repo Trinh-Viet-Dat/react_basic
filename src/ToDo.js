@@ -16,14 +16,14 @@ function ToDo() {
 		});
 	};
 	const handleSubmit = () => {
-		let newitem = inputValue.inputValueItem;
-		let newtodo = JSON.parse(JSON.stringify(todo));
+		let newItem = inputValue.inputValueItem;
+		let newTodo = JSON.parse(JSON.stringify(todo));
 		const arr = {
-			item: newitem,
+			item: newItem,
 			status: "New",
 		};
-		newtodo.push(arr);
-		setTodo(newtodo);
+		newTodo.push(arr);
+		setTodo(newTodo);
 		inputValue.inputValueItem = " ";
 	};
 	const handleDelete = (index) => {
@@ -104,7 +104,7 @@ function ToDo() {
 										<button
 											id="conpleted"
 											onClick={() =>
-												handleStatus(index, "new")
+												handleStatus(index, "New")
 											}
 										>
 											New
